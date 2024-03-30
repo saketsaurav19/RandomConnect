@@ -17,7 +17,7 @@ export const SocketProvider = (props) => {
 
   useEffect(() => {
     // Establish socket connection memoized to avoid unnecessary reconnections
-    const newSocket = io('http://192.168.194.203:8000');
+    const newSocket = io('http://localhost:8000');
     setSocket(newSocket);
 
     // Clean up on unmount
