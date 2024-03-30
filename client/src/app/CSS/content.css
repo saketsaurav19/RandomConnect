@@ -1,0 +1,10 @@
+.container{
+    position: relative;
+    width: 100%;
+    margin: 0px;
+}
+
+.Bgimg{
+    width: 100%;
+    display: block;
+}
