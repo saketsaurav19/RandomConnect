@@ -11,6 +11,7 @@ function Navbar() {
   const router = useRouter();
   const socket = useSocket();
   const [socketConnected, setSocketConnected] = useState(false);
+  const [Role , setRole] = useState(null);
 
 
   useEffect(() =>{
@@ -29,10 +30,15 @@ function Navbar() {
     console.log("button")
     if (socketConnected) {
       socket.emit('Generate Room');
+      socket.on('role' , (role) => {
+        console.log(role);
+        setRole(role);
+        localStorage.setItem('role' , role);
+      })
       socket.on('roomID', (roomId) => {
         console.log(roomId);
         if(roomId){
-          router.push(`/room/${roomId}`);
+          router.push(`/room/${roomId}` , {query : {'Role' : Role}});
         }
       });
     } else {
