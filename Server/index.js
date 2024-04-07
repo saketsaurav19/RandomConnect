@@ -10,7 +10,6 @@ let socketId;
 io.on('connection', (socket) => {
     console.log('A user connected');
     socketId = socket.id;
-
     socket.on('Generate Room', () => {
         let roomId = findAvailableRoom();
         // If the room is available or newly created, join it
@@ -24,7 +23,6 @@ io.on('connection', (socket) => {
         }
     });
 
-    // Handle offer event
     socket.on('offer', ({ offer, remoteUserId }) => {
         console.log('Received offer from:', socket.id, 'to:', remoteUserId);
         // Broadcast the offer to the specified remote user
@@ -54,6 +52,7 @@ function findAvailableRoom() {
     console.log(rooms);
     return newRoomId;
 }
+
 
 function removeUserFromRoom(socketId) {
     for (const roomId in rooms) {
